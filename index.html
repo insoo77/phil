@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>철학 TTS 스마트폰용 드롭다운 Index</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Malgun Gothic', Arial, sans-serif;
+  background: #f6f8fc;
+}
+.topbar {
+  height: 54px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 8px;
+  background: linear-gradient(90deg, #263f73, #476da8);
+  box-shadow: 0 2px 10px rgba(0,0,0,.18);
+}
+.logo {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  white-space: nowrap;
+  padding: 0 4px;
+}
+select {
+  flex: 1;
+  min-width: 0;
+  height: 38px;
+  border: none;
+  border-radius: 10px;
+  padding: 0 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1f2f4d;
+  background: #fff;
+}
+button {
+  height: 38px;
+  border: none;
+  border-radius: 10px;
+  padding: 0 10px;
+  font-weight: 800;
+  font-size: 14px;
+  color: #fff;
+  background: #f0a33a;
+  cursor: pointer;
+  white-space: nowrap;
+}
+button:active {
+  transform: scale(.98);
+}
+.framewrap {
+  width: 100%;
+  height: calc(100vh - 54px);
+  background: #fff;
+}
+iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  background: #fff;
+}
+@media (max-width: 520px) {
+  .topbar {
+    height: 50px;
+    padding: 6px;
+    gap: 5px;
+  }
+  .logo {
+    font-size: 13px;
+  }
+  select {
+    height: 36px;
+    font-size: 13px;
+    border-radius: 9px;
+    padding: 0 6px;
+  }
+  button {
+    height: 36px;
+    font-size: 12px;
+    padding: 0 8px;
+    border-radius: 9px;
+  }
+  .framewrap {
+    height: calc(100vh - 50px);
+  }
+}
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="logo">철학 TTS</div>
+    <select id="pageSelect" onchange="loadPage(this.value)">
+      <option value="01_who_am_i_philosophy_tts_text_full.html">01. 나는 누구인가? / Who am I?</option>
+<option value="02_how_should_i_live_philosophy_tts_text_full.html">02. 어떻게 살아야 하는가? / How should I live?</option>
+<option value="03_what_is_truth_philosophy_tts_text_full.html">03. 무엇이 진실인가? / What is truth?</option>
+<option value="04_are_humans_free_philosophy_tts_text_full.html">04. 인간은 자유로운가? / Are humans free?</option>
+<option value="05_what_comes_after_death_philosophy_tts_text_full.html">05. 죽음 이후는 무엇인가? / What comes after death?</option>
+<option value="06_where_does_happiness_come_from_philosophy_tts_text_full.html">06. 행복은 어디에서 오는가? / Where does happiness come from?</option>
+<option value="a01_youth_courage_tts_text_full.html">Youth & Courage</option>
+<option value="a01_youth_philosophy_tts_text_full.html">Youth 젊음</option>
+<option value="a02_passion_philosophy_tts_text_full.html">Passion 열정</option>
+<option value="a03_dream_philosophy_tts_text_full.html">Dream 꿈</option>
+<option value="a04_challenge_philosophy_tts_text_full.html">Challenge 도전</option>
+<option value="a05_hope_philosophy_tts_text_full.html">Hope 희망</option>
+<option value="a06_adventure_philosophy_tts_text_full.html">Adventure 모험</option>
+<option value="a07_freedom_philosophy_tts_text_full.html">Freedom 자유</option>
+<option value="a08_energy_philosophy_tts_text_full.html">Energy 활력</option>
+<option value="a09_future_philosophy_tts_text_full.html">Future 미래</option>
+<option value="a10_courage_philosophy_tts_text_full.html">Courage 용기</option>
+<option value="m01_meaning_of_life_philosophy_tts_text_full.html">삶의 의미</option>
+<option value="m02_happiness_good_life_philosophy_tts_text_full.html">행복과 좋은 삶</option>
+<option value="m03_freedom_responsibility_philosophy_tts_text_full.html">자유와 책임</option>
+<option value="m04_good_and_evil_philosophy_tts_text_full.html">선과 악</option>
+<option value="m05_justice_society_philosophy_tts_text_full.html">정의와 사회</option>
+<option value="m06_love_human_relationships_philosophy_tts_text_full.html">사랑과 인간관계</option>
+<option value="m07_death_immortality_philosophy_tts_text_full.html">죽음과 불멸</option>
+<option value="m08_knowledge_truth_philosophy_tts_text_full.html">지식과 진리</option>
+<option value="m09_humanity_technology_philosophy_tts_text_full.html">인간과 기술</option>
+<option value="m10_nature_humanity_philosophy_tts_text_full.html">자연과 인간의 관계</option>
+    </select>
+    <button onclick="openNew()">새창</button>
+  </div>
+
+  <div class="framewrap">
+    <iframe id="viewer" src="01_who_am_i_philosophy_tts_text_full.html" title="철학 TTS 본문"></iframe>
+  </div>
+
+<script>
+const viewer = document.getElementById('viewer');
+const pageSelect = document.getElementById('pageSelect');
+
+function loadPage(url) {
+  viewer.src = url;
+  localStorage.setItem('philosophy_tts_last_page', url);
+}
+
+function openNew() {
+  window.open(viewer.src, '_blank');
+}
+
+const last = localStorage.getItem('philosophy_tts_last_page');
+if (last) {
+  const option = Array.from(pageSelect.options).find(o => o.value === last);
+  if (option) {
+    pageSelect.value = last;
+    viewer.src = last;
+  }
+}
+</script>
+</body>
+</html>
